@@ -18,8 +18,8 @@ public class CardValidation {
             throw new CardException("A card must have either a value or a type.", HttpStatus.BAD_REQUEST);
         }
 
-        // Eğer `type` JOKER ise, `value` ve `color` null yapılır
-        if (card.getType() == Type.JOKER) { // Enum kontrolü
+
+        if (card.getType() == Type.JOKER) {
             card.setValue(null);
             card.setColor(null);
         }

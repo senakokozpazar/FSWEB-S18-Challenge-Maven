@@ -26,7 +26,7 @@ public class CardController {
         return cardRepository.findAll();
     }
 
-    @GetMapping("/color/{color}")
+    @GetMapping("/byColor/{color}")
     public List<Card> getByColor(@PathVariable("color") String color) {
         return cardRepository.findByColor(color);
     }
@@ -37,9 +37,10 @@ public class CardController {
         return cardRepository.save(card);
     }
 
-    @PutMapping
-    public Card update( @RequestBody Card card) {
-        CardValidation.validateCard(card);
+    @PutMapping("/")
+    public Card update(@RequestBody Card card) {
+        long id = card.getId();
+        card.setId(id);
         return cardRepository.update(card);
     }
 
@@ -48,12 +49,13 @@ public class CardController {
         return cardRepository.remove(id);
     }
 
-    @GetMapping("/value/{value}")
+    @GetMapping("/byValue/{value}")
     public List<Card> getByValue(@PathVariable("value") Integer value) {
         return cardRepository.findByValue(value);
     }
 
-    @GetMapping("/type/{type}")
+
+    @GetMapping("/byType/{type}")
     public List<Card> getByType(@PathVariable("type") String type) {
         return cardRepository.findByType(type);
     }
